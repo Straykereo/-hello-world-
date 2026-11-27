@@ -1,0 +1,6 @@
+out/
+output.json
+*.class
+.idea/
+*.iml
+.vscode/
