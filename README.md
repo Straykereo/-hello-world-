@@ -108,14 +108,11 @@ A Java module that generates structured word-puzzle game levels in JSON format f
 
 ## Screenshots
 
-## Screenshots
-
-**Running the generator:**
+**Running the generator (Build OK):**
 ![Console output](docs/screenshot_run.png)
 
 **Generated output.json:**
 ![JSON output](docs/screenshot_output.png)
-
 ## Known Limitations
 
 - **Basic difficulty heuristic:** Difficulty relies solely on main word length and subword count rather than letter rarity or word frequency.
