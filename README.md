@@ -108,9 +108,13 @@ A Java module that generates structured word-puzzle game levels in JSON format f
 
 ## Screenshots
 
-> Add screenshots of your terminal execution (`run.bat` / `SelfTest`) and generated `output.json` here before final submission:
-> - `docs/screenshot_run.png`
-> - `docs/screenshot_selftest.png`
+## Screenshots
+
+**Running the generator:**
+![Console output](docs/screenshot_run.png)
+
+**Generated output.json:**
+![JSON output](docs/screenshot_output.png)
 
 ## Known Limitations
 
