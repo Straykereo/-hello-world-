@@ -113,6 +113,39 @@ A Java module that generates structured word-puzzle game levels in JSON format f
 
 **Generated output.json:**
 ![JSON output](docs/screenshot_output.png)
+# Weak Points of the "Words from word" Implementation
+
+Below are the main limitations of the current project version and potential areas for improvement that are helpful to highlight during the project defense.
+
+## 1. Basic Text Normalization
+
+* **The Issue:** Normalization is limited to case conversion and replacing `Ё -> Е`.
+* **Limitations:** Spaces, hyphens, apostrophes, rare Unicode characters, and morphological word forms are not handled.
+* **How to Improve:** Implement comprehensive input string sanitization and normalization (filtering non-alphabetic characters, supporting configurable alphabet rules).
+
+## 2. Simplified Difficulty and `minWordsToPass` Calculation
+
+* **The Issue:** The difficulty level (`EASY`, `MEDIUM`, `HARD`) and the minimum number of words required to pass are calculated using a basic heuristic.
+* **Limitations:** Letter rarity, the length of the discovered subwords, and the total number of possible combinations from the main word are not taken into account.
+* **How to Improve:** Introduce a weighted difficulty score based on letter frequency, word lengths, and the total size of the resulting subword set.
+
+## 3. Empty Hints (`hint: ""`) by Default
+
+* **The Issue:** In the generated `output.json`, the `hint` field for each subword is populated as an empty string.
+* **Limitations:** While the JSON schema is ready for game integration, actual hints for the player are missing.
+* **How to Improve:** Integrate a dictionary of definitions/synonyms or generate basic hints (e.g., based on the first letter or word category).
+
+## 4. Manual Build Without Maven/Gradle
+
+* **The Issue:** Building and running the project rely on direct `javac`/`java` commands and hardcoded relative paths (`src/main/java/words/*.java`, `lib/gson-2.11.0.jar`, `examples/input.json`).
+* **Limitations:** Moving the project or adding new dependencies requires manually managing the `classpath` and directory structure, and `.bat` scripts on Windows may be blocked by security policies (such as Smart App Control).
+* **How to Improve:** Migrate the project to a standard build tool (Maven or Gradle) for automated dependency management and test execution.
+
+## 5. Basic Edge-Case and Input Error Handling
+
+* **The Issue:** In the event of malformed input JSON, a missing input file, or an empty dictionary, diagnostics are limited to standard exceptions.
+* **Limitations:** It is not always immediately clear to the user which specific field in the input file is invalid.
+* **How to Improve:** Add explicit validation for the input model (`LevelInput`) with descriptive error messages and expand the unit test suite in `SelfTest`.
 ## Known Limitations
 
 - **Basic difficulty heuristic:** Difficulty relies solely on main word length and subword count rather than letter rarity or word frequency.
